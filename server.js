@@ -1,0 +1,11 @@
+const express = require('express');
+const app = express();
+const cheerio = require('cheerio');
+
+require('dotenv').config();
+
+const port = process.env.PORT || 3000;
+
+app.listen(port, ()=>{
+    console.log(`server on port ${port}`)
+});
