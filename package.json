@@ -3,16 +3,31 @@
   "version": "1.0.0",
   "description": "superBarato database feed",
   "main": "server.js",
-  "repository": null,
+  "repository": "https://github.com/NachoSanchez/super-barato-feed",
   "author": "Ignacio Sanchez",
   "license": "MIT",
-  "scripts":{
-    "start": "nodemon server.js"
+  "scripts": {
+    "dev": "nodemon src/server.js --exec babel-node",
+    "build": "babel src --out-dir dist",
+    "start": "node dist/server.js",
+    "feed": "node src/feed.js"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.8.7",
     "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "ngeohash": "^0.6.3",
+    "pg": "^8.0.2",
+    "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
+    "nodemon": "^2.0.3"
   }
 }
