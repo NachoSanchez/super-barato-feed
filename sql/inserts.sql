@@ -1,4 +1,4 @@
--- Initial database set-up (commerce_types and Categories feed )
+-- Initial database set-up (commerce_types and Categories feed ) run comands after db.sql
 INSERT INTO commerce_types( name )
 VALUES  ('Almacén'), --1
         ( 'Mercado'), --2
