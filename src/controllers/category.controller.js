@@ -19,6 +19,7 @@ export async function createCategory(req, res) {
         },{
             fields: ['name']
         });
+        
         if(newCategory) {
             res.json({
                 msg: 'Categoría creada exitosamente!',

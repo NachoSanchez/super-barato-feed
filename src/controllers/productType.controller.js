@@ -12,8 +12,8 @@ export async function getProductTypes(req,res) {
     }
 }
 
-export async function getProductTypeBySubCat(req, res) {
-    const { subcat_id } = req.params;
+export async function filterBySubCat(req, res) {
+    const { subcat_id } = req.query;
     try {
         const types = await ProductType.findAll({
             attributes: ['id', 'name', 'subcat_id'],

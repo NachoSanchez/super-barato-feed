@@ -12,8 +12,8 @@ export async function getSubCategories(req,res) {
     }
 }
 
-export async function getSubCategoriesByCategory(req, res) {
-    const { cat_id } = req.params;
+export async function filterByCategory(req, res) {
+    const { cat_id } = req.query;
     try {
         const subcategories = await SubCategory.findAll({
             attributes: ['id', 'name', 'cat_id'],

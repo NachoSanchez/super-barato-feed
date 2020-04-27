@@ -1,5 +1,5 @@
 import { Router } from 'express';
-
+const router = Router();
 import { createCategory, 
         getCategories, 
         getOneCategory,        
@@ -7,7 +7,6 @@ import { createCategory,
         updateCategory } from '../controllers/category.controller';
 
 
-const router = Router();
 // /api/categories
 router.post('/', createCategory );
 router.get('/', getCategories );
