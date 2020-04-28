@@ -9,9 +9,9 @@ router.get('/', getCommerces);
 router.post('/', createCommerce);
 
 // /api/commerces/:id
-router.get('/:id', getOneCommerce);
+router.get('/commerce', getOneCommerce);
 
 // /api/commerces?geohash=******
-router.get('/filter', filterByGeohash);
+router.get('/filter', filterByGeohash );
 
 export default router;

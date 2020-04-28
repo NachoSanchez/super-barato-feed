@@ -14,14 +14,7 @@ const CommerceType = database.define('commerce_types', {
     timestamps: false,
 });
 
-CommerceType.hasMany(Commerce, {
-    foreignKey: 'type',
-    sourceKey: 'id'
-});
-
-Commerce.belongsTo(CommerceType, {
-    foreignKey: 'type',
-    sourceKey: 'id'
-});
+CommerceType.hasMany(Commerce);
+Commerce.belongsTo(CommerceType);
 
 export default CommerceType;

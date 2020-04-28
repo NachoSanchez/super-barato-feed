@@ -1,7 +1,22 @@
 import Geohash from 'ngeohash';
 import Commerce from '../models/Commerce';
+import Sequelize from 'sequelize';
 
-const Op = require('sequelize').Op;
+const Op = Sequelize.Op;
+export async function filterByGeohash(req, res) {
+    const { geohash } = req.query;
+    try{
+        const commerces = await Commerce.findAll({
+            where: { geohash: { [Op.like]: '%'+ geohash +'%' } },
+            attributes: [
+                'id', 'name', 'city', 'brand', 'geohash', 'lat', 'lng', 'logo', 'type'
+            ]
+        });
+        res.send(commerces);
+
+    } catch(err) { console.log(err); }
+}
+
 
 export async function getCommerces(req, res) {
     try {
@@ -16,7 +31,7 @@ export async function getCommerces(req, res) {
 }
 
 export async function getOneCommerce(req, res) {
-    const { id } =  req.params;
+    const { id } =  req.query;
     try {
             const commerce =  await Commerce.findOne({
                 where: { id },
@@ -54,13 +69,3 @@ export async function createCommerce(req, res) {
     }
 }
 
-export async function filterByGeohash(req, res) {
-    const { geohash } = req.query;
-    try{
-        const commerces = await Commerce.findAll({
-            where: { geohash: { [Op.like]: `%${ geohash }%` } }
-        });
-        res.send(commerces);
-
-    } catch(err) { console.log(err); }
-}
