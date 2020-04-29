@@ -1,5 +1,6 @@
 import app from './app';
-import dotenv from 'dotenv' ;
+import dotenv from 'dotenv';
+import regeneratorRuntime from 'regenerator-runtime'; // needed globally on build-
 
 
 //setting enviroment

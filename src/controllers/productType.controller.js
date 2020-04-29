@@ -4,7 +4,7 @@ export async function getProductTypes(req,res) {
     try {
         const types = await ProductType.findAll();
         res.json({
-            msg: 'Estos son todos los Tipos de producto',
+            msg: 'Estos son todos los Tipos disponibles de producto',
             data: types
         });
     } catch(err) {

@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize';
 import { database } from '../database';
+import Product from './Product';
 
 
 const ProductType = database.define('product_types', {
@@ -18,5 +19,7 @@ const ProductType = database.define('product_types', {
     underscored: true
 });
 
+ProductType.hasMany(Product);
+Product.belongsTo(ProductType);
 
 export default ProductType;
