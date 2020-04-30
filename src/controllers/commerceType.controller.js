@@ -16,7 +16,6 @@ export async function createCommerceType(req, res) {
         let newCommerceType = await CommerceType.create({
             name
         },{ fields: ['name'] });
-
         if(newCommerceType) {
             res.json({
                 msg: 'Acabas de crear una nueva Clasificación de comercio',

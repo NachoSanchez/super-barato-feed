@@ -1,8 +1,11 @@
 import SubCategory from '../models/SubCategory';
+import ProductType from '../models/ProductType';
 
 export async function getSubCategories(req,res) {
     try {
-        const subCategories = await SubCategory.findAll();
+        const subCategories = await SubCategory.findAll({
+            include: [ProductType],
+        });
         res.json({
             msg: 'Estas son todas las sub categorias!',
             data: subCategories
@@ -16,6 +19,7 @@ export async function filterByCategory(req, res) {
     const { cat_id } = req.query;
     try {
         const subcategories = await SubCategory.findAll({
+            include: [ProductType],
             attributes: ['id', 'name', 'cat_id'],
             where: { cat_id }
         });

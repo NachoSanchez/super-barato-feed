@@ -27,11 +27,21 @@ const Price = database.define('prices', {
         type: Sequelize.DATE
     },
 },{
-    timestamps: false,
-    underscored: true
+    underscored: true,
+    timestamps: false
 });
 
-Commerce.belongsToMany(Product, { trough: 'prices' });
-Product.belongsToMany(Commerce, { trough: 'prices' });
+
+Commerce.belongsToMany(Product, {
+     as: 'commerce', 
+     through: 'prices', 
+     foreignKey: 'commerce_id' 
+});
+
+Product.belongsToMany(Commerce, { 
+    as: 'product', 
+    through: 'prices', 
+    foreignKey: 'product_id'
+});
 
 export default Price;

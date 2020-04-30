@@ -9,6 +9,8 @@ import subCategoryRoutes from './routes/subCategories';
 import productTypeRoutes from './routes/productTypes';
 import commerceTypeRoutes from './routes/commerceTypes';
 import commerceRoutes from './routes/commerces';
+import productRoutes from './routes/products';
+import priceRoutes from './routes/prices';
 
  
 //inicialización
@@ -25,6 +27,8 @@ app.use('/api/sub_categories',subCategoryRoutes );
 app.use('/api/product_types', productTypeRoutes);
 app.use('/api/commerce_types', commerceTypeRoutes );
 app.use('/api/commerces', commerceRoutes );
+app.use('/api/products', productRoutes);
+app.use('/api/prices', priceRoutes);
 
 
 export default app;

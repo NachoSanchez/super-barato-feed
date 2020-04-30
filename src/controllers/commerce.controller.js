@@ -1,5 +1,5 @@
 import Commerce from '../models/Commerce';
-import { v5 as uuid } from 'uuid';
+import CommerceType from '../models/CommerceType';
 import Geohash from 'ngeohash';
 import Sequelize from 'sequelize';
 
@@ -8,15 +8,15 @@ const Op = Sequelize.Op;
 //Crear comercio
 export async function createCommerce(req, res) {
     //seteando Valores
-    let { name, tarjeta_alimentar, lat, lng, logo, type_id, precios_cuidados } = req.body;
+    let { name, tarjeta_alimentar, lat, lng, logo, commerce_type_id, precios_cuidados } = req.body;
     let geohash = Geohash.encode(lat, lng);
 
     try {
             let newCommerce = await Commerce.create({
-                 name, lat, lng, geohash, type_id, logo, tarjeta_alimentar, precios_cuidados
+                 name, lat, lng, geohash, commerce_type_id, logo, tarjeta_alimentar, precios_cuidados
             },{
                 fields: [
-                     'name', 'geohash', 'lat', 'lng', 'logo', 'type_id', 'tarjeta_alimentar', 'precios_cuidados'
+                     'name', 'geohash', 'lat', 'lng', 'logo', 'commerce_type_id', 'tarjeta_alimentar', 'precios_cuidados'
                 ]
             });
             
@@ -28,7 +28,10 @@ export async function createCommerce(req, res) {
             }
 
     } catch(err) {
-        console.log(err);
+        console.log(err)
+        res.send({
+            msg: 'Este Comercio ya existe en nuestra base de datos',
+        })
     }
 }
 
@@ -41,9 +44,7 @@ export async function getCommerces(req, res) {
     try {
             const commerces = await Commerce.findAll({
                 //limit, offset,
-                attributes:  [ 
-                    'id', 'name', 'geohash', 'lat', 'lng', 'logo', 'type_id', 'tarjeta_alimentar','precios_cuidados'
-                ]
+                include: CommerceType,
             });
             res.json({
                 msg: 'estos son todos los comercios',

@@ -11,13 +11,12 @@ const Commerce = database.define('commerces', {
     lat: { type: Sequelize.FLOAT },
     lng: { type: Sequelize.FLOAT },
     geohash: { type: Sequelize.TEXT },
-    type_id: { type: Sequelize.INTEGER },
+    commerce_type_id: { type: Sequelize.INTEGER },
     precios_cuidados: { type: Sequelize.BOOLEAN },
     tarjeta_alimentar: { type: Sequelize.BOOLEAN }
 },{
     timestamps: false,
     underscored: true
 });
-
 
 export default Commerce;

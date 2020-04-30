@@ -1,8 +1,11 @@
 import Category from '../models/Category';
+import SubCategory from '../models/SubCategory';
 
 export async function getCategories(req,res) {
     try {
-        const categories = await Category.findAll();
+        const categories = await Category.findAll({
+            include: [SubCategory]
+        });
         res.json({
             data: categories
         });

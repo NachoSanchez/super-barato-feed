@@ -19,7 +19,14 @@ const ProductType = database.define('product_types', {
     underscored: true
 });
 
-ProductType.hasMany(Product);
-Product.belongsTo(ProductType);
+ProductType.hasMany(Product, { 
+    foreignKey: 'product_type_id', 
+    sourceKey: 'id' 
+});
+
+Product.belongsTo(ProductType, { 
+    foreignKey: 'product_type_id', 
+    sourceKey: 'id' 
+});
 
 export default ProductType;

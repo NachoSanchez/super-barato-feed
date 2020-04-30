@@ -1,8 +1,11 @@
 import ProductType from '../models/ProductType';
+import Product from '../models/Product'
 
 export async function getProductTypes(req,res) {
     try {
-        const types = await ProductType.findAll();
+        const types = await ProductType.findAll({
+            include: [Product]
+        });
         res.json({
             msg: 'Estos son todos los Tipos disponibles de producto',
             data: types
@@ -20,6 +23,7 @@ export async function filterBySubCat(req, res) {
             where: { subcat_id }
         });
         res.json({types});
+        
     } catch(err) {
         console.log(err);
     }
