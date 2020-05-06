@@ -19,6 +19,7 @@ export async function filterBySubCat(req, res) {
     const { subcat_id } = req.query;
     try {
         const types = await ProductType.findAll({
+            include:[Product],
             attributes: ['id', 'name', 'subcat_id'],
             where: { subcat_id }
         });

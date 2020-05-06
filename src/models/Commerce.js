@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize';
 import { database } from '../database';
+import Price from './Price';
 
 const Commerce = database.define('commerces', {
     id: {
@@ -17,6 +18,17 @@ const Commerce = database.define('commerces', {
 },{
     timestamps: false,
     underscored: true
+});
+
+Commerce.hasMany(Price, {
+    as: 'commerce',
+    foreignKey: 'commerce_id',
+    sourceKey: 'id'
+});
+Price.belongsTo(Commerce, {
+    as: 'commerce',
+    foreignKey: 'commerce_id',
+    sourceKey: 'id'
 });
 
 export default Commerce;

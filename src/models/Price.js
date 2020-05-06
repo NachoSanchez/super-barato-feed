@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 import { database } from '../database';
 import Commerce from './Commerce';
-import Product from './Product'
+import Product from './Product';
 
 const Price = database.define('prices', {
     id: {
@@ -17,6 +17,9 @@ const Price = database.define('prices', {
     commerce_id: {
         type: Sequelize.INTEGER
     },
+    geohash: {
+        type: Sequelize.STRING
+    },
     created_at: {
         type: Sequelize.DATE
     },
@@ -29,19 +32,6 @@ const Price = database.define('prices', {
 },{
     underscored: true,
     timestamps: false
-});
-
-
-Commerce.belongsToMany(Product, {
-     as: 'commerce', 
-     through: 'prices', 
-     foreignKey: 'commerce_id' 
-});
-
-Product.belongsToMany(Commerce, { 
-    as: 'product', 
-    through: 'prices', 
-    foreignKey: 'product_id'
 });
 
 export default Price;

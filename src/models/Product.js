@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize';
 import { database } from '../database';
+//import Price from './Price';
 
 const Product = database.define('products', {
     id: {
@@ -27,4 +28,16 @@ const Product = database.define('products', {
     underscored: true
 });
 
+/*Product.hasMany(Price, {
+    as: 'product',
+    foreignKey: 'product_id',
+    sourceKey: 'id'
+});
+
+Price.belongsTo(Product, {
+    as: 'product',
+    foreignKey: 'product_id',
+    sourceKey: 'id'
+});*/
+ 
 export default Product;
